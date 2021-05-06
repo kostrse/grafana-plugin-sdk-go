@@ -128,7 +128,7 @@ func StandaloneServe(dsopts ServeOpts, address string) error {
 		plugKeys = append(plugKeys, "stream")
 	}
 
-	log.DefaultLogger.Debug("Standalone plugin server", "capabilities", plugKeys)
+	log.DefaultLogger().Debug("Standalone plugin server", "capabilities", plugKeys)
 
 	listener, err := net.Listen("tcp", address)
 	if err != nil {
@@ -139,7 +139,7 @@ func StandaloneServe(dsopts ServeOpts, address string) error {
 	if err != nil {
 		return err
 	}
-	log.DefaultLogger.Debug("Plugin server exited")
+	log.DefaultLogger().Debug("Plugin server exited")
 
 	return nil
 }

@@ -2,8 +2,12 @@
 package log
 
 import (
-	hclog "github.com/hashicorp/go-hclog"
+	"github.com/hashicorp/go-hclog"
 )
+
+// defaultLogger is the default logger.
+// This can be overridden with SetLogger
+var defaultLogger = New()
 
 // Logger is the main Logger interface.
 type Logger interface {
@@ -46,5 +50,11 @@ func (l *hclogWrapper) Error(msg string, args ...interface{}) {
 	l.logger.Error(msg, args...)
 }
 
-// DefaultLogger is the default logger.
-var DefaultLogger = New()
+func DefaultLogger() Logger {
+	return defaultLogger
+}
+
+// SetLogger is used by consumers to override the DefaultLogger
+func SetLogger(logger Logger) {
+	defaultLogger = logger
+}

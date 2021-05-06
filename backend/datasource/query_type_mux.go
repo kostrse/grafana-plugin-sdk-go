@@ -40,12 +40,12 @@ func (mux *QueryTypeMux) Handle(queryType string, handler backend.QueryDataHandl
 	}
 
 	if queryType == "" {
-		log.DefaultLogger.Debug("datasource: registering query type fallback handler")
+		log.DefaultLogger().Debug("datasource: registering query type fallback handler")
 		mux.fallbackHandler = handler
 		return
 	}
 
-	log.DefaultLogger.Debug("datasource: registering query type handler", "queryType", queryType)
+	log.DefaultLogger().Debug("datasource: registering query type handler", "queryType", queryType)
 	mux.m[queryType] = handler
 }
 

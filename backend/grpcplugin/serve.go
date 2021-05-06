@@ -57,13 +57,13 @@ func Serve(opts ServeOpts) error {
 	for k := range pSet {
 		plugKeys = append(plugKeys, k)
 	}
-	log.DefaultLogger.Debug("Serving plugin", "plugins", plugKeys)
+	log.DefaultLogger().Debug("Serving plugin", "plugins", plugKeys)
 	plugin.Serve(&plugin.ServeConfig{
 		HandshakeConfig:  handshake,
 		VersionedPlugins: versionedPlugins,
 		GRPCServer:       opts.GRPCServer,
 	})
-	log.DefaultLogger.Debug("Plugin server exited")
+	log.DefaultLogger().Debug("Plugin server exited")
 
 	return nil
 }
